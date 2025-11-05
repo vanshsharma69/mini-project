@@ -57,15 +57,11 @@ const Home = () => {
           />
           <div className="absolute bg-blue-100 w-[400px] h-[400px] rounded-full top-10 right-5 blur-3xl opacity-40"></div>
         </motion.div>
-
-        {/* Decorative background shapes */}
-        <div className="absolute bottom-0 left-0 bg-blue-100 w-72 h-72 rounded-tr-[150px] opacity-40"></div>
-        <div className="absolute top-0 right-0 bg-blue-50 w-60 h-60 rounded-bl-[100px] opacity-40"></div>
       </section>
 
       {/* ✅ Appointment CTA Cards */}
       <motion.section
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:absolute sm:bottom-[80px] right-0 sm:right-[320px] gap-6 px-6 md:px-20 py-12"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:absolute sm:bottom-[-10px] right-0 sm:right-[250px] gap-6 px-6 md:px-20 py-12"
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
