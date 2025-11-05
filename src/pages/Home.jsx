@@ -5,34 +5,58 @@ import BookAppointment from "../Components/BookAppointment";
 import DoctorsSection from "../Components/DoctorsSection";
 import NewsSection from "../Components/NewsSection";
 import ContactSection from "../Components/ContactSection";
+import { Stethoscope, Users, Hospital } from "lucide-react";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const Home = () => {
   return (
-    <div className="bg-white text-gray-800">
+    <div className="bg-white text-gray-800 overflow-hidden">
       {/* ✅ HERO SECTION */}
-      <section className="relative bg-[#F5F9FF] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16 md:py-28 overflow-hidden">
+      <section
+        id="home"
+        className="relative bg-[#F5F9FF] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16 md:py-28 overflow-hidden"
+      >
         {/* Left Content */}
-        <div className="md:w-1/2 z-10">
+        <motion.div
+          className="md:w-1/2 z-10"
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <p className="text-blue-500 font-semibold uppercase tracking-wider mb-2">
             Caring for Life
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0E273A] leading-snug mb-6">
             Leading the Way <br /> in Medical Excellence
           </h1>
-          <button className="bg-[#D8E3FF] text-[#0E273A] px-6 py-3 rounded-full font-semibold hover:bg-blue-200 transition">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#D8E3FF] text-[#0E273A] px-6 py-3 rounded-full font-semibold hover:bg-blue-200 transition"
+          >
             Our Services
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Right Doctor Image */}
-        <div className="md:w-1/2 flex justify-center mt-10 md:mt-0 relative">
+        <motion.div
+          className="md:w-1/2 flex justify-center mt-10 md:mt-0 relative"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <img
             src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1000&q=80"
             alt="Doctor"
-            className="w-[450px] md:w-[550px] object-cover z-10"
+            className="w-[450px] md:w-[550px] object-cover z-10 rounded-2xl shadow-lg"
           />
           <div className="absolute bg-blue-100 w-[400px] h-[400px] rounded-full top-10 right-5 blur-3xl opacity-40"></div>
-        </div>
+        </motion.div>
 
         {/* Decorative background shapes */}
         <div className="absolute bottom-0 left-0 bg-blue-100 w-72 h-72 rounded-tr-[150px] opacity-40"></div>
@@ -40,67 +64,114 @@ const Home = () => {
       </section>
 
       {/* ✅ Appointment CTA Cards */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 md:px-20 py-12 bg-white">
+      <motion.section
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:absolute sm:bottom-[80px] right-0 sm:right-[320px] gap-6 px-6 md:px-20 py-12"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.7, staggerChildren: 0.2 }}
+        viewport={{ once: true }}
+      >
         {/* Card 1 */}
-        <div className="flex items-center justify-between bg-[#0E273A] text-white px-6 py-6 rounded-xl hover:scale-105 transition-transform cursor-pointer">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex items-center justify-between  bg-[#0E273A] text-white px-6 py-6 rounded-xl shadow-lg cursor-pointer"
+        >
           <div>
             <h3 className="text-lg font-semibold">Book an Appointment</h3>
+            <p className="text-sm text-gray-300">Consult the best doctors</p>
           </div>
-          <i className="fa-regular fa-calendar text-3xl text-blue-100"></i>
-        </div>
+          <Stethoscope className="w-8 h-8 text-blue-100 ml-4" />
+        </motion.div>
 
         {/* Card 2 */}
-        <div className="flex items-center justify-between bg-[#D8E3FF] text-[#0E273A] px-6 py-6 rounded-xl hover:scale-105 transition-transform cursor-pointer">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex items-center justify-between bg-[#D8E3FF] text-[#0E273A] px-6 py-6 rounded-xl shadow-lg cursor-pointer"
+        >
           <div>
-            <h3 className="text-lg font-semibold">Book an Appointment</h3>
+            <h3 className="text-lg font-semibold">Our Specialists</h3>
+            <p className="text-sm text-gray-600">Meet expert doctors</p>
           </div>
-          <i className="fa-solid fa-user-group text-3xl text-[#0E273A]"></i>
-        </div>
+          <Users className="w-8 h-8 text-[#0E273A]" />
+        </motion.div>
 
         {/* Card 3 */}
-        <div className="flex items-center justify-between bg-[#1D9BF0] text-white px-6 py-6 rounded-xl hover:scale-105 transition-transform cursor-pointer">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex items-center justify-between bg-[#1D9BF0] text-white px-6 py-6 rounded-xl shadow-lg cursor-pointer"
+        >
           <div>
-            <h3 className="text-lg font-semibold">Book an Appointment</h3>
+            <h3 className="text-lg font-semibold">Our Hospitals</h3>
+            <p className="text-sm text-blue-100">Find care near you</p>
           </div>
-          <i className="fa-solid fa-hospital text-3xl text-blue-100"></i>
-        </div>
-      </section>
+          <Hospital className="w-8 h-8 text-blue-100" />
+        </motion.div>
+      </motion.section>
 
       {/* ✅ Welcome Section */}
-      <section className="text-center mt-16 px-6">
-        <h2 className="text-2xl font-bold mb-4 text-blue-500">
-          Welcome to Mini Project+
+      <motion.section
+        id="about"
+        className="text-center mt-36 px-6"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-blue-500 uppercase tracking-wide">
+          Welcome to AryaCare+
         </h2>
-        <p className="text-4xl font-semibold text-gray-500 italic mb-4 mt-4">
+        <p className="text-4xl font-semibold text-gray-600 italic mb-6">
           A Great Place to Receive Care
         </p>
-        <p className="text-lg text-gray-500 max-w-3xl mx-auto">
-          At MiniProject+, we are dedicated to providing top-notch healthcare
+        <p className="text-lg text-gray-500 max-w-3xl mx-auto leading-relaxed">
+          At AryaCare+, we are dedicated to providing top-notch healthcare
           services to our community. Our team of experienced medical
-          professionals is committed to ensuring your well-being through
-          compassionate care and advanced medical practices.
+          professionals ensures your well-being through compassionate care and
+          modern medical practices.
         </p>
 
         {/* Image with Text Overlay */}
-        <div className="relative mt-10 flex justify-center items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="relative mt-10 flex justify-center items-center"
+        >
           <img
             src="https://www.shmsolutions.in/assets/images/bg/patient-management-system.gif"
             alt="Healthcare Services"
-            className="w-[1200px] h-full object-cover filter grayscale-25 brightness-75 transition-all duration-500 hover:grayscale-0 hover:brightness-100"
+            className="w-[1200px] h-full"
           />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* ✅ Care Section */}
-      <CareSection />
+      <section id="care">
+        <CareSection />
+      </section>
 
       {/* ✅ Other Sections */}
-      <section>
+      <section id="services">
         <ServicesSection />
+      </section>
+
+      <section id="doctors">
         <DoctorsSection />
+      </section>
+
+      <section id="appointment">
         <BookAppointment />
-        <NewsSection></NewsSection>
-        <ContactSection></ContactSection>
+      </section>
+
+      <section id="news">
+        <NewsSection />
+      </section>
+
+      <section id="contact">
+        <ContactSection />
       </section>
     </div>
   );
