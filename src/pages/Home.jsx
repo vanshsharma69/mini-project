@@ -34,7 +34,7 @@ const Home = () => {
             Caring for Life
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0E273A] leading-snug mb-6">
-            Leading the Way <br /> in Medical Excellence
+            <span className="text-blue-600">Leading</span> the Way <br /> in Medical Excellence
           </h1>
           <motion.button
             whileHover={{ scale: 1.05 }}

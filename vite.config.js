@@ -14,9 +14,9 @@ export default defineConfig({
         'pwa-512x512.png'
       ],
       manifest: {
-        name: 'My Awesome Web App',
-        short_name: 'MyApp',
-        description: 'This is my React Vite PWA!',
+        name: 'AryaCare+',
+        short_name: 'AryaCare+',
+        description: 'A Hospital Management App',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',

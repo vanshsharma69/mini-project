@@ -1,54 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext"; // ✅ import context
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(true);
-  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext); // ✅ get login() function from context
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
-    setFormData({ email: "", password: "", name: "" });
+    setFormData({ name: "", email: "", password: "" });
   };
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    if (isSignUp) {
-      if (users.find((u) => u.email === formData.email)) {
-        alert("User already exists!");
-        return;
+
+    try {
+      if (isSignUp) {
+        const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+        alert(res.data.message || "Account created successfully!");
+        setIsSignUp(false);
+      } else {
+        const res = await axios.post("http://localhost:5000/api/auth/login", {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        const userData = {
+          name: res.data.user.name,
+          email: res.data.user.email,
+          token: res.data.token,
+        };
+
+        // ✅ update context & persist
+        login(userData);
+        localStorage.setItem("token", res.data.token);
+
+        alert(`Welcome back, ${userData.name}!`);
+        navigate("/"); // ✅ now redirect works!
       }
-      users.push(formData);
-      localStorage.setItem("users", JSON.stringify(users));
-      alert("Account created successfully!");
-      setIsSignUp(false);
-    } else {
-      const user = users.find(
-        (u) => u.email === formData.email && u.password === formData.password
-      );
-      if (user) {
-        alert(`Welcome back, ${user.name}!`);
-        navigate("/");
-      } else alert("Invalid credentials!");
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || "Something went wrong!");
     }
   };
 
   return (
     <div className="flex h-screen bg-white">
-      {/* Left Image Section */}
+      {/* Left Section */}
       <div className="hidden md:flex w-1/2 bg-gray-50 items-center justify-center">
-        <div className="text-center space-y-6">
-          <img
-            src="https://imgs.search.brave.com/gNg_J-ii6BHwULpwmmYyhWSA8sMwm-9GddHf0kYhoPw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG5p/Lmljb25zY291dC5j/b20vaWxsdXN0cmF0/aW9uL3ByZW1pdW0v/dGh1bWIvbWFuLXBy/b2dyYW1taW5nLXNv/ZnR3YXJlLWF0LWxh/cHRvcC1pbGx1c3Ry/YXRpb24tc3ZnLWRv/d25sb2FkLXBuZy0x/MTg3MTc5OS5wbmc"
-            alt="illustration"
-            className="w-[600px] mx-auto"
-          />
-        </div>
+        <img
+          src="https://imgs.search.brave.com/gNg_J-ii6BHwULpwmmYyhWSA8sMwm-9GddHf0kYhoPw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG5p/Lmljb25zY291dC5j/b20vaWxsdXN0cmF0/aW9uL3ByZW1pdW0v/dGh1bWIvbWFuLXBy/b2dyYW1taW5nLXNv/ZnR3YXJlLWF0LWxh/cHRvcC1pbGx1c3Ry/YXRpb24tc3ZnLWRv/d25sb2FkLXBuZy0x/MTg3MTc5OS5wbmc"
+          alt="illustration"
+          className="w-[600px] mx-auto"
+        />
       </div>
 
       {/* Right Form Section */}
@@ -59,25 +71,23 @@ const Login = () => {
           </h2>
           <p className="text-gray-500 mb-8">
             {isSignUp
-              ? "Join EncryptoNotes and start securely managing your notes."
-              : "Sign in to continue managing your encrypted notes."}
+              ? "Join AryaCare and manage your hospital appointments efficiently."
+              : "Sign in to continue managing your AryaCare dashboard."}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {isSignUp && (
-              <div>
-                <div className="relative">
-                  <User className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your username"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full pl-10 pr-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
-                  />
-                </div>
+              <div className="relative">
+                <User className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-400 outline-none"
+                />
               </div>
             )}
 
