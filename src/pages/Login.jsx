@@ -9,7 +9,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // ✅ get login() function from context
+  const { login } = useContext(AuthContext);
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
@@ -24,11 +24,11 @@ const Login = () => {
 
     try {
       if (isSignUp) {
-        const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+        const res = await axios.post("https://aryacare-backend.onrender.com/api/auth/register", formData);
         alert(res.data.message || "Account created successfully!");
         setIsSignUp(false);
       } else {
-        const res = await axios.post("http://localhost:5000/api/auth/login", {
+        const res = await axios.post("https://aryacare-backend.onrender.com/api/auth/login", {
           email: formData.email,
           password: formData.password,
         });
