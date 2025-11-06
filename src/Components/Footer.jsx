@@ -18,27 +18,44 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Important Links</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
-            <li className="hover:text-blue-300 cursor-pointer">Appointment</li>
-            <li className="hover:text-blue-300 cursor-pointer">Doctors</li>
-            <li className="hover:text-blue-300 cursor-pointer">Services</li>
-            <li className="hover:text-blue-300 cursor-pointer">About Us</li>
+            <li>
+              <a href="#appointment" className="hover:text-blue-300 cursor-pointer">
+                Appointment
+              </a>
+            </li>
+            <li>
+              <a href="#doctors" className="hover:text-blue-300 cursor-pointer">
+                Doctors
+              </a>
+            </li>
+            <li>
+              <a href="#services" className="hover:text-blue-300 cursor-pointer">
+                Services
+              </a>
+            </li>
+            <li>
+              <a href="#about" className="hover:text-blue-300 cursor-pointer">
+                About Us
+              </a>
+            </li>
           </ul>
         </div>
+
 
         {/* Contact Info */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
           <ul className="space-y-2 text-gray-300 text-sm">
             <li>
-              <span className="font-medium">Call:</span> (237) 681-812-255
+              <span className="font-medium">Call:</span> (+91) 8218075692 
             </li>
             <li>
               <span className="font-medium">Email:</span>{" "}
-              fildineeesoe@gmail.com
+              01vanshsharma@gmail.com
             </li>
             <li>
-              <span className="font-medium">Address:</span> 0123 Some place,
-              <br /> Some country
+              <span className="font-medium">Address:</span> 0123 GLA University, Mathura
+              <br /> India
             </li>
           </ul>
         </div>
@@ -64,7 +81,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-gray-300 text-sm space-y-4 md:space-y-0">
-        <p>© 2025 Hospital's Name. All Rights Reserved by PNTEC-LTD</p>
+        <p>© 2025 AryaCare+. All Rights Reserved by PNTEC-LTD</p>
         <div className="flex space-x-4">
           <a href="#" className="hover:text-blue-400 transition">
             <Linkedin size={20} />

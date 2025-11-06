@@ -68,7 +68,6 @@ export default function Navbar() {
 
         {/* Right side - Search + Buttons */}
         <div className="hidden md:flex items-center space-x-5">
-          <Search className="text-white cursor-pointer hover:text-blue-200" size={22} />
           
           <a
             href="#appointment"
@@ -107,7 +106,6 @@ export default function Navbar() {
           </ul>
 
           <div className="flex flex-col items-center space-y-4 mt-6">
-            <Search className="text-white" size={20} />
             <a
               href="#appointment"
               className="bg-blue-100 text-[#1E2B6C] font-semibold px-6 py-2 rounded-full hover:bg-blue-200 transition-all w-4/5"

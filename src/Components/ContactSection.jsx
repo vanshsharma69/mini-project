@@ -10,7 +10,7 @@ export default function ContactSection() {
       bg: "bg-[#C8D9FF]",
       content: (
         <>
-          (237) 681-812-255 <br /> (237) 666-331-894
+          (+91) 8954299517 <br /> (+91) 8218075692
         </>
       ),
     },
@@ -20,7 +20,7 @@ export default function ContactSection() {
       bg: "bg-[#0E1A54] text-white",
       content: (
         <>
-          0123 Some place <br /> 9876 Some country
+          0123 GLA University, Mathura <br /> India
         </>
       ),
     },
@@ -30,7 +30,7 @@ export default function ContactSection() {
       bg: "bg-[#C8D9FF]",
       content: (
         <>
-          fildineeesoe@gmail.com <br /> myebstudios@gmail.com
+          01vanshsharma@gmail.com <br /> myebstudios@gmail.com
         </>
       ),
     },
@@ -136,7 +136,7 @@ export default function ContactSection() {
         transition={{ delay: 0.4 }}
         viewport={{ once: true }}
       >
-        <p>© 2025 MediCare+ | All Rights Reserved</p>
+        <p>© 2025 AryaCare+ | All Rights Reserved</p>
       </motion.div>
 
       {/* Bottom decorative blur */}

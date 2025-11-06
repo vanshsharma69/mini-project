@@ -7,6 +7,8 @@ import NewsSection from "../Components/NewsSection";
 import ContactSection from "../Components/ContactSection";
 import { Stethoscope, Users, Hospital } from "lucide-react";
 import { motion } from "framer-motion";
+import ValuesSection from "../Components/ValuesSection";
+import hospital from "../assets/hospital_img_one.png"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -51,9 +53,9 @@ const Home = () => {
           transition={{ duration: 1 }}
         >
           <img
-            src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1000&q=80"
+            src={hospital}
             alt="Doctor"
-            className="w-[450px] md:w-[550px] object-cover z-10 rounded-2xl shadow-lg"
+            className="h-[350px]  z-10"
           />
           <div className="absolute bg-blue-100 w-[400px] h-[400px] rounded-full top-10 right-5 blur-3xl opacity-40"></div>
         </motion.div>
@@ -160,6 +162,10 @@ const Home = () => {
 
       <section id="appointment">
         <BookAppointment />
+      </section>
+
+      <section>
+        <ValuesSection></ValuesSection>
       </section>
 
       <section id="news">
