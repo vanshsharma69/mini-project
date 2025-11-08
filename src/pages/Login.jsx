@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext"; // ✅ import context
-
+import { AuthContext } from "../context/AuthContext"; 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
@@ -39,12 +38,11 @@ const Login = () => {
           token: res.data.token,
         };
 
-        // ✅ update context & persist
         login(userData);
         localStorage.setItem("token", res.data.token);
 
         alert(`Welcome back, ${userData.name}!`);
-        navigate("/"); // ✅ now redirect works!
+        navigate("/"); 
       }
     } catch (error) {
       console.error(error);

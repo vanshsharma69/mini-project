@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Menu, X } from "lucide-react";
-import { AuthContext } from "../context/AuthContext"; // 👈 Import context
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext); // 👈 Access user + logout
+  const { user, logout } = useContext(AuthContext); 
 
   useEffect(() => {
     const handleSmoothScroll = (e) => {

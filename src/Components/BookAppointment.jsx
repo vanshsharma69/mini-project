@@ -23,7 +23,7 @@ export default function BookAppointment() {
     try {
       const res = await axios.post("https://aryacare-backend.onrender.com/api/appointments/create", {
         patientName: formData.patientName,
-        doctorId: formData.doctorId, // should be a valid doctor ObjectId
+        doctorId: formData.doctorId, 
         date: formData.date,
         time: formData.time,
         notes: formData.notes,
