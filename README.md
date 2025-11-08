@@ -202,6 +202,6 @@ aryacare/
 
 This project is for educational purposes only under the **Non-Jovac Mini Project** submission at GLA University.
 
----
+--
 
 ⭐ *If you like this project, give it a star on GitHub!*
