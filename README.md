@@ -20,7 +20,7 @@ Make sure you have the following installed:
 
 #### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/aryacare.git
+git clone https://github.com/vanshsharma69/mini-project.git
 cd aryacare
 ````
 
@@ -194,7 +194,7 @@ aryacare/
 **Vansh Sharma**
 📍 GLA University
 💡 Passionate Full Stack Developer | System Design & Scalable Software Enthusiast
-🔗 [Portfolio](https://vanshsharma69.github.io/Portfolio_Demo/)
+🔗 [Portfolio](https://portfolio-01vanshsharma-3727s-projects.vercel.app/)
 
 ---
 
