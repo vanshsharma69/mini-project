@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function BookAppointment() {
@@ -14,6 +14,22 @@ export default function BookAppointment() {
     notes: "",
   });
 
+  const [doctors, setDoctors] = useState([]);
+
+  // Fetch doctors from backend
+  const loadDoctors = async () => {
+    try {
+      const res = await axios.get("https://aryacare-backend.onrender.com/api/docters");
+      setDoctors(res.data);
+    } catch (err) {
+      console.error("Error fetching doctors:", err);
+    }
+  };
+
+  useEffect(() => {
+    loadDoctors();
+  }, []);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -21,14 +37,16 @@ export default function BookAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://aryacare-backend.onrender.com/api/appointments/create", {
+      await axios.post("https://aryacare-backend.onrender.com/api/appointments/create", {
         patientName: formData.patientName,
-        doctorId: formData.doctorId, 
+        doctorId: formData.doctorId,   // send correct doctor id
         date: formData.date,
         time: formData.time,
         notes: formData.notes,
       });
+
       alert("Appointment booked successfully!");
+
       setFormData({
         patientName: "",
         gender: "",
@@ -40,6 +58,7 @@ export default function BookAppointment() {
         department: "",
         notes: "",
       });
+
     } catch (err) {
       console.error(err);
       alert("Failed to book appointment");
@@ -70,20 +89,21 @@ export default function BookAppointment() {
       <div className="md:w-1/2 bg-[#0E1A54] text-white shadow-lg overflow-hidden z-10">
         <form onSubmit={handleSubmit} className="p-8 md:p-10">
           <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-4">
+
             <input
               name="patientName"
               type="text"
               placeholder="Name"
               value={formData.patientName}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-900"
             />
 
             <select
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-900"
             >
               <option value="">Gender</option>
               <option>Male</option>
@@ -97,15 +117,16 @@ export default function BookAppointment() {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-900"
             />
+
             <input
               name="phone"
               type="text"
               placeholder="Phone"
               value={formData.phone}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-900"
             />
 
             <input
@@ -113,32 +134,38 @@ export default function BookAppointment() {
               type="date"
               value={formData.date}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-900"
             />
+
             <input
               name="time"
               type="time"
               value={formData.time}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-900"
             />
 
+            {/* DOCTORS DROPDOWN - DYNAMIC */}
             <select
               name="doctorId"
               value={formData.doctorId}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-900 "
             >
-              <option value="">Doctor</option>
-              <option value="672e932d9a7a7b1234567890">Dr. Riya Sharma</option>
-              <option value="672e932d9a7a7b1234567891">Dr. Aarav Patel</option>
+              <option value="">Select Doctor</option>
+
+              {doctors.map((doc) => (
+                <option key={doc._id} value={doc._id}>
+                  {doc.name} — {doc.specialization}
+                </option>
+              ))}
             </select>
 
             <select
               name="department"
               value={formData.department}
               onChange={handleChange}
-              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-300"
+              className="bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 text-gray-900"
             >
               <option value="">Department</option>
               <option>Cardiology</option>
@@ -154,7 +181,7 @@ export default function BookAppointment() {
             rows="1"
             value={formData.notes}
             onChange={handleChange}
-            className="w-full bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-300"
+            className="w-full bg-transparent border-b border-gray-400 p-2 outline-none focus:border-blue-400 placeholder:text-gray-900"
           ></textarea>
 
           <div className="bg-[#A4C4FF] mt-6 text-center">
