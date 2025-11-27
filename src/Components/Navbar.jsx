@@ -93,6 +93,7 @@ export default function Navbar() {
             <li><a href="#doctors" onClick={() => setIsOpen(false)}>Doctors</a></li>
             <li><a href="#news" onClick={() => setIsOpen(false)}>News</a></li>
             <li><a href="#contact" onClick={() => setIsOpen(false)}>Contact</a></li>
+            <li><a href="/track-disease" onClick={() => setIsOpen(false)}>Track Disease</a></li>
           </ul>
 
           <div className="flex flex-col items-center space-y-4 mt-6">
