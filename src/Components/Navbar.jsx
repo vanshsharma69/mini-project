@@ -42,6 +42,7 @@ export default function Navbar() {
           <li><a href="#doctors" className="hover:text-blue-200">Doctors</a></li>
           <li><a href="#news" className="hover:text-blue-200">News</a></li>
           <li><a href="#contact" className="hover:text-blue-200">Contact</a></li>
+          <li><a href="/track-disease" className="hover:text-blue-200">Track Disease</a></li>
         </ul>
 
         {/* Right Side */}

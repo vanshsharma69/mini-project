@@ -9,6 +9,7 @@ import { Stethoscope, Users, Hospital } from "lucide-react";
 import { motion } from "framer-motion";
 import ValuesSection from "../Components/ValuesSection";
 import hospital from "../assets/hospital_img_one.png"
+import Chatbot from "../Components/Chatbot";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
@@ -18,7 +19,8 @@ const fadeUp = {
 const Home = () => {
   return (
     <div className="bg-white text-gray-800 overflow-hidden">
-      {/* ✅ HERO SECTION */}
+      <Chatbot></Chatbot>
+      {/*  HERO SECTION */}
       <section
         id="home"
         className="relative bg-[#F5F9FF] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16 md:py-28 overflow-hidden"
@@ -61,7 +63,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ✅ Appointment CTA Cards */}
+      {/* Appointment CTA Cards */}
       <motion.section
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:absolute sm:bottom-[-10px] right-0 sm:right-[250px] gap-6 px-6 md:px-20 py-12"
         variants={fadeUp}
@@ -107,7 +109,7 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
-      {/* ✅ Welcome Section */}
+      {/* Welcome Section */}
       <motion.section
         id="about"
         className="text-center mt-36 px-6"
@@ -146,12 +148,12 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
-      {/* ✅ Care Section */}
+      {/* Care Section */}
       <section id="care">
         <CareSection />
       </section>
 
-      {/* ✅ Other Sections */}
+      {/* Other Sections */}
       <section id="services">
         <ServicesSection />
       </section>

@@ -19,7 +19,7 @@ export default function BookAppointment() {
   // Fetch doctors from backend
   const loadDoctors = async () => {
     try {
-      const res = await axios.get("https://aryacare-backend.onrender.com/api/docters");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/docters`);
       setDoctors(res.data);
     } catch (err) {
       console.error("Error fetching doctors:", err);
@@ -37,7 +37,7 @@ export default function BookAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://aryacare-backend.onrender.com/api/appointments/create", {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/appointments/create`, {
         patientName: formData.patientName,
         doctorId: formData.doctorId,   // send correct doctor id
         date: formData.date,

@@ -23,11 +23,11 @@ const Login = () => {
 
     try {
       if (isSignUp) {
-        const res = await axios.post("https://aryacare-backend.onrender.com/api/auth/register", formData);
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, formData);
         alert(res.data.message || "Account created successfully!");
         setIsSignUp(false);
       } else {
-        const res = await axios.post("https://aryacare-backend.onrender.com/api/auth/login", {
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
           email: formData.email,
           password: formData.password,
         });

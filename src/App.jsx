@@ -10,13 +10,13 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import TrackDisease from "./pages/TrackDisease";  // <-- ADDED
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 
 function PrivateRoute({ children }) {
   const { user, loading } = useContext(AuthContext);
 
-  // Wait until auth state is restored
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-white">
@@ -35,7 +35,6 @@ function PrivateRoute({ children }) {
   return user ? children : <Navigate to="/login" />;
 }
 
-// ✅ Redirect logged-in users away from /login
 function LoginRedirect({ children }) {
   const { user, loading } = useContext(AuthContext);
   if (loading) return null;
@@ -62,12 +61,21 @@ function Layout() {
             }
           />
 
-          {/* Protected Route */}
+          {/* Protected Routes */}
           <Route
             path="/"
             element={
               <PrivateRoute>
                 <Home />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/track-disease"
+            element={
+              <PrivateRoute>
+                <TrackDisease />
               </PrivateRoute>
             }
           />
